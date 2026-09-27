@@ -10,6 +10,7 @@ Breaking it into these three separate, scoped requests made each change easy to 
 
 
 2. How did your approach to asking questions change as you worked?
+
 My first prompts described what I wanted at a high level ("add a dark mode toggle"). As I went on, I got more specific about how — for example, telling it to use CSS custom properties so the whole page would re-theme automatically instead of hardcoding colors in multiple places, or specifying that the follower count needed to update live when the Follow button was clicked. Being explicit about the underlying approach (not just the visible feature) saved a round of back-and-forth compared to my first, vaguer prompt.
 
 
@@ -30,6 +31,7 @@ I'd plan the data shape (the posts array's fields) before writing any UI, since 
 # Chat Exchanges 
 
 1. ✅ Dark mode is in place
+
 I updated the theme flow in:
 
 index.html
@@ -42,6 +44,7 @@ Centralized colors in CSS custom properties so the feed, stories, posts, and hea
 Saved the user preference in localStorage so it persists across reloads.
 
 2. ✅ Username popovers added
+
 Each post’s username is now clickable and opens a small popover with:
 
 the profile’s follower count
@@ -60,6 +63,7 @@ the toggle switches between Follow and Following
 the follower count updates from 18,400 followers to 18,401 followers on toggle
 
 3. ✅ Make a post as a user added
+
 The + button in the top bar now opens a modal with a caption field, and submitting it adds a new post at the top of the feed using the current user’s avatar.
 
 Updated files:
