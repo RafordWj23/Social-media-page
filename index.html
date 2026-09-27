@@ -69,7 +69,14 @@
       <div class="post-head">
         <div class="avatar avatar-sm post-avatar"></div>
         <div class="post-meta">
-          <span class="post-user"></span>
+          <div class="post-user-wrap">
+            <button class="post-user-btn" type="button" aria-expanded="false"></button>
+            <div class="user-popover" hidden>
+              <div class="user-popover-name"></div>
+              <div class="user-follower-count"></div>
+              <button class="user-follow-btn" type="button"></button>
+            </div>
+          </div>
           <span class="post-loc"></span>
         </div>
         <button class="icon-btn post-more" aria-label="More options">⋯</button>

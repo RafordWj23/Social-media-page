@@ -200,9 +200,64 @@ button:focus-visible {
   flex: 1;
 }
 
-.post-user {
+.post-user-wrap {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.post-user-btn {
   font-weight: 600;
   font-size: 0.85rem;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.user-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  min-width: 180px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+  padding: 10px 12px;
+}
+
+.user-popover[hidden] {
+  display: none;
+}
+
+.user-popover-name {
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.user-follower-count {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.user-follow-btn {
+  width: 100%;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.user-follow-btn.following {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 .post-loc {

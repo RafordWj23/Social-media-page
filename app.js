@@ -10,6 +10,8 @@ const posts = [
     location: "Joshua Tree, CA",
     photoColors: ["#f4b183", "#c4483c"],
     likes: 128,
+    followers: 18400,
+    following: false,
     caption: "Golden hour never misses out here 🌵",
     comments: [
       { user: "theo.r", text: "This is stunning!" },
@@ -24,6 +26,8 @@ const posts = [
     location: "Kyoto, Japan",
     photoColors: ["#6fb3b3", "#1e4e4e"],
     likes: 342,
+    followers: 270500,
+    following: true,
     caption: "Quietest street in the city, right before sunrise",
     comments: [
       { user: "lena.n", text: "The light in this 😍" }
@@ -37,6 +41,8 @@ const posts = [
     location: "Home kitchen",
     photoColors: ["#e0a9c4", "#7a3a5c"],
     likes: 76,
+    followers: 6500,
+    following: false,
     caption: "Attempt #4 at sourdough. Getting closer.",
     comments: []
   }
@@ -88,6 +94,35 @@ initializeTheme();
 const feedEl = document.getElementById("posts");
 const template = document.getElementById("post-template");
 
+function formatFollowers(value) {
+  return `${value.toLocaleString()} followers`;
+}
+
+function closeUserPopovers() {
+  document.querySelectorAll(".user-popover").forEach(popover => {
+    popover.hidden = true;
+    const trigger = popover.closest(".post-user-wrap")?.querySelector(".post-user-btn");
+    if (trigger) trigger.setAttribute("aria-expanded", "false");
+  });
+}
+
+function updateUserPopover(article, post) {
+  const trigger = article.querySelector(".post-user-btn");
+  const popover = article.querySelector(".user-popover");
+  const name = article.querySelector(".user-popover-name");
+  const followerCount = article.querySelector(".user-follower-count");
+  const followBtn = article.querySelector(".user-follow-btn");
+
+  trigger.textContent = post.user;
+  name.textContent = post.user;
+  followerCount.textContent = formatFollowers(post.followers);
+  followBtn.textContent = post.following ? "Following" : "Follow";
+  followBtn.classList.toggle("following", post.following);
+  followBtn.setAttribute("aria-pressed", String(post.following));
+  popover.hidden = true;
+  trigger.setAttribute("aria-expanded", "false");
+}
+
 function renderPost(post) {
   const node = template.content.cloneNode(true);
   const article = node.querySelector(".post");
@@ -98,8 +133,8 @@ function renderPost(post) {
   avatar.style.setProperty("--c1", post.c1);
   avatar.style.setProperty("--c2", post.c2);
 
-  node.querySelector(".post-user").textContent = post.user;
   node.querySelector(".post-loc").textContent = post.location;
+  updateUserPopover(article, post);
 
   const photo = node.querySelector(".post-photo");
   photo.style.background = `linear-gradient(135deg, ${post.photoColors[0]}, ${post.photoColors[1]})`;
@@ -136,6 +171,28 @@ feedEl.addEventListener("click", (e) => {
   const article = e.target.closest(".post");
   if (!article) return;
   const post = posts.find(p => p.id === Number(article.dataset.id));
+
+  if (e.target.closest(".post-user-btn")) {
+    const popover = article.querySelector(".user-popover");
+    const isOpen = !popover.hidden;
+    closeUserPopovers();
+    if (!isOpen) {
+      popover.hidden = false;
+      article.querySelector(".post-user-btn").setAttribute("aria-expanded", "true");
+    }
+    return;
+  }
+
+  if (e.target.closest(".user-follow-btn")) {
+    post.following = !post.following;
+    post.followers += post.following ? 1 : -1;
+    updateUserPopover(article, post);
+    return;
+  }
+
+  if (!e.target.closest(".post-user-wrap") && !e.target.closest(".user-popover")) {
+    closeUserPopovers();
+  }
 
   // Like button
   if (e.target.closest(".like-btn")) {
