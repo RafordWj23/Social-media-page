@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snapfeed</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snapfeed</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="topbar">
@@ -14,6 +16,8 @@
       <div class="topbar-icons">
         <button class="icon-btn" aria-label="New post">+</button>
         <button class="icon-btn" aria-label="Notifications">♡</button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode"
+          aria-pressed="false">☾</button>
         <div class="avatar avatar-sm" style="--c1:#3a7d7c;--c2:#1e4e4e;">JD</div>
       </div>
     </div>
@@ -23,12 +27,36 @@
 
     <!-- Stories -->
     <section class="stories" aria-label="Stories">
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#e0a13c;--c2:#a5482c;">MK</div></div><span>maya_k</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#3a7d7c;--c2:#1e4e4e;">TR</div></div><span>theo.r</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#b5563c;--c2:#6e2e2e;">SP</div></div><span>sam_p</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#5a5ca0;--c2:#2e2e5c;">LN</div></div><span>lena.n</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#3c8c5c;--c2:#1e4e2e;">OW</div></div><span>owen_w</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#c47ba0;--c2:#7a3a5c;">RB</div></div><span>ravi.b</span></div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#e0a13c;--c2:#a5482c;">MK</div>
+        </div><span>maya_k</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#3a7d7c;--c2:#1e4e4e;">TR</div>
+        </div><span>theo.r</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#b5563c;--c2:#6e2e2e;">SP</div>
+        </div><span>sam_p</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#5a5ca0;--c2:#2e2e5c;">LN</div>
+        </div><span>lena.n</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#3c8c5c;--c2:#1e4e2e;">OW</div>
+        </div><span>owen_w</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#c47ba0;--c2:#7a3a5c;">RB</div>
+        </div><span>ravi.b</span>
+      </div>
     </section>
 
     <!-- Posts -->
@@ -72,4 +100,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>

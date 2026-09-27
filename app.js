@@ -42,6 +42,48 @@ const posts = [
   }
 ];
 
+// ---------- Theme ----------
+const THEME_KEY = "snapfeed-theme";
+const themeToggle = document.querySelector(".theme-toggle");
+
+function applyTheme(theme) {
+  const selectedTheme = theme === "dark" ? "dark" : "light";
+  document.body.dataset.theme = selectedTheme;
+
+  if (themeToggle) {
+    const isDark = selectedTheme === "dark";
+    themeToggle.textContent = isDark ? "☀" : "☾";
+    themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+  }
+
+  try {
+    localStorage.setItem(THEME_KEY, selectedTheme);
+  } catch (error) {
+    console.warn("Could not save theme preference", error);
+  }
+}
+
+function initializeTheme() {
+  try {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    applyTheme(initialTheme);
+  } catch (error) {
+    applyTheme("light");
+  }
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+  });
+}
+
+initializeTheme();
+
 // ---------- Rendering ----------
 const feedEl = document.getElementById("posts");
 const template = document.getElementById("post-template");
