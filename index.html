@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snapfeed</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snapfeed</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="topbar">
     <div class="topbar-inner">
       <h1 class="logo">Snapfeed</h1>
       <div class="topbar-icons">
-        <button class="icon-btn" aria-label="New post">+</button>
+        <button class="icon-btn new-post-btn" type="button" aria-label="New post">+</button>
         <button class="icon-btn" aria-label="Notifications">♡</button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode"
+          aria-pressed="false">☾</button>
         <div class="avatar avatar-sm" style="--c1:#3a7d7c;--c2:#1e4e4e;">JD</div>
       </div>
     </div>
@@ -23,12 +27,36 @@
 
     <!-- Stories -->
     <section class="stories" aria-label="Stories">
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#e0a13c;--c2:#a5482c;">MK</div></div><span>maya_k</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#3a7d7c;--c2:#1e4e4e;">TR</div></div><span>theo.r</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#b5563c;--c2:#6e2e2e;">SP</div></div><span>sam_p</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#5a5ca0;--c2:#2e2e5c;">LN</div></div><span>lena.n</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#3c8c5c;--c2:#1e4e2e;">OW</div></div><span>owen_w</span></div>
-      <div class="story"><div class="story-ring"><div class="avatar" style="--c1:#c47ba0;--c2:#7a3a5c;">RB</div></div><span>ravi.b</span></div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#e0a13c;--c2:#a5482c;">MK</div>
+        </div><span>maya_k</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#3a7d7c;--c2:#1e4e4e;">TR</div>
+        </div><span>theo.r</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#b5563c;--c2:#6e2e2e;">SP</div>
+        </div><span>sam_p</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#5a5ca0;--c2:#2e2e5c;">LN</div>
+        </div><span>lena.n</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#3c8c5c;--c2:#1e4e2e;">OW</div>
+        </div><span>owen_w</span>
+      </div>
+      <div class="story">
+        <div class="story-ring">
+          <div class="avatar" style="--c1:#c47ba0;--c2:#7a3a5c;">RB</div>
+        </div><span>ravi.b</span>
+      </div>
     </section>
 
     <!-- Posts -->
@@ -41,7 +69,14 @@
       <div class="post-head">
         <div class="avatar avatar-sm post-avatar"></div>
         <div class="post-meta">
-          <span class="post-user"></span>
+          <div class="post-user-wrap">
+            <button class="post-user-btn" type="button" aria-expanded="false"></button>
+            <div class="user-popover" hidden>
+              <div class="user-popover-name"></div>
+              <div class="user-follower-count"></div>
+              <button class="user-follow-btn" type="button"></button>
+            </div>
+          </div>
           <span class="post-loc"></span>
         </div>
         <button class="icon-btn post-more" aria-label="More options">⋯</button>
@@ -70,6 +105,26 @@
     </article>
   </template>
 
+  <div class="modal hidden" id="new-post-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="new-post-title">
+      <div class="modal-header">
+        <h2 id="new-post-title">Create a post</h2>
+        <button class="icon-btn modal-close" type="button" aria-label="Close new post modal">✕</button>
+      </div>
+
+      <form id="new-post-form">
+        <label class="modal-label" for="new-post-caption">Caption</label>
+        <textarea id="new-post-caption" name="caption" rows="4" placeholder="What are you sharing?"></textarea>
+        <div class="modal-actions">
+          <button type="button" class="modal-cancel">Cancel</button>
+          <button type="submit" class="modal-submit">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
+
 </html>
