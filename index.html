@@ -14,7 +14,7 @@
     <div class="topbar-inner">
       <h1 class="logo">Snapfeed</h1>
       <div class="topbar-icons">
-        <button class="icon-btn" aria-label="New post">+</button>
+        <button class="icon-btn new-post-btn" type="button" aria-label="New post">+</button>
         <button class="icon-btn" aria-label="Notifications">♡</button>
         <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode"
           aria-pressed="false">☾</button>
@@ -104,6 +104,25 @@
       </form>
     </article>
   </template>
+
+  <div class="modal hidden" id="new-post-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="new-post-title">
+      <div class="modal-header">
+        <h2 id="new-post-title">Create a post</h2>
+        <button class="icon-btn modal-close" type="button" aria-label="Close new post modal">✕</button>
+      </div>
+
+      <form id="new-post-form">
+        <label class="modal-label" for="new-post-caption">Caption</label>
+        <textarea id="new-post-caption" name="caption" rows="4" placeholder="What are you sharing?"></textarea>
+        <div class="modal-actions">
+          <button type="button" class="modal-cancel">Cancel</button>
+          <button type="submit" class="modal-submit">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

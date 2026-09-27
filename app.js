@@ -51,6 +51,34 @@ const posts = [
 // ---------- Theme ----------
 const THEME_KEY = "snapfeed-theme";
 const themeToggle = document.querySelector(".theme-toggle");
+const currentUser = {
+  user: "you",
+  initials: "JD",
+  c1: "#3a7d7c",
+  c2: "#1e4e4e",
+  location: "Just now",
+  followers: 2684,
+  following: false
+};
+
+const newPostBtn = document.querySelector(".new-post-btn");
+const newPostModal = document.getElementById("new-post-modal");
+const newPostForm = document.getElementById("new-post-form");
+const newPostCaption = document.getElementById("new-post-caption");
+const modalCloseBtn = document.querySelector(".modal-close");
+const modalCancelBtn = document.querySelector(".modal-cancel");
+
+function openNewPostModal() {
+  newPostModal.classList.remove("hidden");
+  newPostModal.setAttribute("aria-hidden", "false");
+  newPostCaption.focus();
+}
+
+function closeNewPostModal() {
+  newPostModal.classList.add("hidden");
+  newPostModal.setAttribute("aria-hidden", "true");
+  newPostForm.reset();
+}
 
 function applyTheme(theme) {
   const selectedTheme = theme === "dark" ? "dark" : "light";
@@ -85,6 +113,56 @@ if (themeToggle) {
   themeToggle.addEventListener("click", () => {
     const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
     applyTheme(nextTheme);
+  });
+}
+
+if (newPostBtn) {
+  newPostBtn.addEventListener("click", openNewPostModal);
+}
+
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener("click", closeNewPostModal);
+}
+
+if (modalCancelBtn) {
+  modalCancelBtn.addEventListener("click", closeNewPostModal);
+}
+
+if (newPostModal) {
+  newPostModal.addEventListener("click", (e) => {
+    if (e.target.dataset.closeModal === "true") {
+      closeNewPostModal();
+    }
+  });
+}
+
+if (newPostForm) {
+  newPostForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const caption = newPostCaption.value.trim();
+    if (!caption) {
+      newPostCaption.focus();
+      return;
+    }
+
+    const newPost = {
+      id: Date.now(),
+      user: currentUser.user,
+      initials: currentUser.initials,
+      c1: currentUser.c1,
+      c2: currentUser.c2,
+      location: currentUser.location,
+      photoColors: ["#d8ebf3", "#3a7d7c"],
+      likes: 0,
+      followers: currentUser.followers,
+      following: currentUser.following,
+      caption,
+      comments: []
+    };
+
+    posts.unshift(newPost);
+    feedEl.prepend(renderPost(newPost));
+    closeNewPostModal();
   });
 }
 
