@@ -28,3 +28,18 @@ I checked in the browser:
 the username button opens the popover
 the toggle switches between Follow and Following
 the follower count updates from 18,400 followers to 18,401 followers on toggle
+
+✅ Make a post as a user added
+The + button in the top bar now opens a modal with a caption field, and submitting it adds a new post at the top of the feed using the current user’s avatar.
+
+Updated files:
+
+index.html
+style.css
+app.js
+Verification
+I verified this in the browser:
+
+the modal opens from the top-bar + button
+submitting a caption creates a new post at the top of the feed
+the new post uses the JD avatar and the current user label
